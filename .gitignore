@@ -1,0 +1,10 @@
+test.py
+.idea/
+__pycache__/
+
+*.pyc
+*.pyo
+venv/
+env/
+*.log
+
