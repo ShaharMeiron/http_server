@@ -1,2 +1,5 @@
-x = {"a": 3, 1: 2}
-k = x.keys()
+import mimetypes
+
+
+uri = "banana.txt"
+print(mimetypes.guess_type(uri))

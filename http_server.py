@@ -54,32 +54,12 @@ def parse_http_request(client_socket):
     return request_line, headers, body
 
 
-def respond_501(client_socket):
-    pass
+def read_file(file_path):
+    with open(file_path, 'rb') as file:
+        return file.read()
 
 
-def respond_400(client_socket):
-    pass
 
-
-def respond_403(client_socket):
-    pass
-
-
-def respond_404(client_socket):
-    pass
-
-
-def respond_505(client_socket):
-    pass
-
-
-def get_response(status_code, status_text, response_headers="", representation_headers="", version = "HTTP/1.1", response_body=""):
-    response = f"""{version} {status_code} {status_text}
-    {response_headers}
-    {representation_headers}
-    {response_body}
-    """
 
 
 def is_request_line_valid(request_line, client_socket):
@@ -127,14 +107,16 @@ def main(server_address=("127.0.0.1", 80)):
                 while True:
                     try:
                         request_line, headers, body = parse_http_request(client_socket)
-                        if  is_request_line_valid(request_line, client_socket):
+                        if is_request_line_valid(request_line, client_socket):
                             respond(client_socket, request_line, headers, body)
 
                     except Exception as e:
                         logging.error(e)
                         break
 
+
 root_dir = r"root_dir"
+
 logging.basicConfig(filename='server.log', level=logging.DEBUG, filemode='w')
 if __name__ == '__main__':
     main()
